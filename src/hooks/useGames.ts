@@ -1,4 +1,5 @@
 import useData from "./useData";
+import type { Genre } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -14,6 +15,14 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = () => useData<Game>('/games');
+const useGames = (selectedGenre?: Genre | null) => {
+  const genreId = selectedGenre?.id;
+
+  return useData<Game>(
+    `/games${genreId ? `?genres=${genreId}` : ""}`, 
+    undefined,               // requestConfig (optional)
+    [genreId]               // deps: re-fetch when genreId changes
+  );
+};
 
 export default useGames;
