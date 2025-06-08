@@ -12,11 +12,11 @@ const ColorModeSwitch = () => {
         <Switch.HiddenInput />
         <Switch.Control>
           <Switch.Thumb />
-          <Switch.Indicator fallback={<Icon as={FaMoon} color="gray.400" />}>
-            <Icon as={FaSun} color="yellow.400" />
+          <Switch.Indicator fallback={ <Icon as={FaSun} color="yellow.400" />}>
+           <Icon as={FaMoon} color="gray.400" />
           </Switch.Indicator>
         </Switch.Control>
-        <Switch.Label>{colorMode === 'dark' ? 'Dark Mode' : 'Light Mode' }</Switch.Label>
+        <Switch.Label>{colorMode === 'light' ? 'Light Mode': 'Dark Mode' }</Switch.Label>
       </Switch.Root>
     </HStack>
   );
