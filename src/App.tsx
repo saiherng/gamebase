@@ -21,6 +21,7 @@ function App() {
       </GridItem>
       
       <GridItem area="aside" bg="" display={{ base: 'none', lg: 'block' }} paddingX={5}>
+         
          <GenreList/>
       </GridItem>
      
