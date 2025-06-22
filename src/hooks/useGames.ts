@@ -1,3 +1,4 @@
+import type { GameQuery } from "../App";
 import useData from "./useData";
 import type { Genre } from "./useGenres";
 
@@ -15,9 +16,10 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre?: Genre | null, selectedPlatform?:Platform | null) => {
-  const genreId = selectedGenre?.id;
-  const platformId = selectedPlatform?.id
+const useGames = (gameQuery?:GameQuery | null) => {
+  
+  const genreId = gameQuery?.genre?.id;
+  const platformId = gameQuery?.platform?.id
 
   const queryParams = new URLSearchParams();
   if (genreId) queryParams.append('genres', genreId.toString());
