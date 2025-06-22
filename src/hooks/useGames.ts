@@ -1,6 +1,5 @@
 import type { GameQuery } from "../App";
 import useData from "./useData";
-import type { Genre } from "./useGenres";
 
 export interface Platform {
   id: number;
@@ -19,11 +18,13 @@ export interface Game {
 const useGames = (gameQuery?:GameQuery | null) => {
   
   const genreId = gameQuery?.genre?.id;
-  const platformId = gameQuery?.platform?.id
+  const platformId = gameQuery?.platform?.id;
+  const ordering = gameQuery?.sortOrder;
 
   const queryParams = new URLSearchParams();
   if (genreId) queryParams.append('genres', genreId.toString());
   if (platformId) queryParams.append('platforms', platformId.toString());
+  if (ordering) queryParams.append('ordering', ordering.toString());
 
   const queryString = queryParams.toString();
   const endpoint = `/games${queryString ? `?${queryString}` : ""}`; 
@@ -33,7 +34,7 @@ const useGames = (gameQuery?:GameQuery | null) => {
   return useData<Game>(
     endpoint, 
     undefined,               // requestConfig (optional)
-    [genreId, platformId]               // deps: re-fetch when genreId changes
+    [gameQuery]               // deps: re-fetch when genreId changes
   );
 };
 
