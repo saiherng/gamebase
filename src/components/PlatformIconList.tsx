@@ -9,10 +9,11 @@ import {
   FaAndroid,
 } from "react-icons/fa";
 
-import { MdPhoneIphone } from 'react-icons/md';
-import { SiNintendo } from "react-icons/si";
+import { MdPhoneIphone, MdOutlineQuestionMark  } from 'react-icons/md';
+import { SiNintendo, SiAtari  } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import type { IconType } from "react-icons";
+
 
 
 interface Props {
@@ -30,13 +31,16 @@ const PlatformIconList = ({ platforms }: Props) => {
         linux: FaLinux,
         android: FaAndroid,
         ios: MdPhoneIphone,
-        web: BsGlobe
+        web: BsGlobe,
+        atari: SiAtari,
+       
+
     }
 
   return (
     <HStack marginY={1}>
       {platforms.map((platform) => (
-        <Icon key={platform.id} color='gray.500' as={iconMap[platform.slug]} />
+        <Icon key={platform.id} color='gray.500' as={iconMap[platform.slug] || MdOutlineQuestionMark } />
       ))}
     </HStack>
   );

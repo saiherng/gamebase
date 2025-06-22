@@ -15,13 +15,23 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre?: Genre | null) => {
+const useGames = (selectedGenre?: Genre | null, selectedPlatform?:Platform | null) => {
   const genreId = selectedGenre?.id;
+  const platformId = selectedPlatform?.id
+
+  const queryParams = new URLSearchParams();
+  if (genreId) queryParams.append('genres', genreId.toString());
+  if (platformId) queryParams.append('platforms', platformId.toString());
+
+  const queryString = queryParams.toString();
+  const endpoint = `/games${queryString ? `?${queryString}` : ""}`; 
+
+  console.log(endpoint)
 
   return useData<Game>(
-    `/games${genreId ? `?genres=${genreId}` : ""}`, 
+    endpoint, 
     undefined,               // requestConfig (optional)
-    [genreId]               // deps: re-fetch when genreId changes
+    [genreId, platformId]               // deps: re-fetch when genreId changes
   );
 };
 
