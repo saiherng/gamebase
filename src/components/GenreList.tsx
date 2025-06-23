@@ -4,6 +4,7 @@ import {
   Image,
   Spinner,
   Link,
+  Heading,
 } from "@chakra-ui/react";
 import useGenres, { type Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
@@ -21,13 +22,17 @@ const GenreList = ({ onSelectGenre, selectedGenre}: Props) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <List.Root listStyleType="none" paddingY='30px'>
+    <>
+    <Heading size='lg' marginBottom={5} marginTop={5}>Genres</Heading>
+
+    <List.Root listStyleType="none" paddingY='0px'>
       {data.map((genre) => (
         <List.Item key={genre.id} paddingY="5px">
           <HStack>
             <Image
               boxSize="32px"
               borderRadius={8}
+              objectFit='cover'
               src={getCroppedImageUrl(genre.image_background)}
             />
             <Link
@@ -36,6 +41,7 @@ const GenreList = ({ onSelectGenre, selectedGenre}: Props) => {
               variant="underline"
               onClick={() => onSelectGenre(genre)}
               colorPalette="orange"
+
             >
               {genre.name}
             </Link>
@@ -43,6 +49,7 @@ const GenreList = ({ onSelectGenre, selectedGenre}: Props) => {
         </List.Item>
       ))}
     </List.Root>
+    </>
   );
 };
 
