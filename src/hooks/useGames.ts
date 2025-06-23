@@ -20,11 +20,13 @@ const useGames = (gameQuery?:GameQuery | null) => {
   const genreId = gameQuery?.genre?.id;
   const platformId = gameQuery?.platform?.id;
   const ordering = gameQuery?.sortOrder;
+  const search = gameQuery?.searchText;
 
   const queryParams = new URLSearchParams();
   if (genreId) queryParams.append('genres', genreId.toString());
   if (platformId) queryParams.append('platforms', platformId.toString());
   if (ordering) queryParams.append('ordering', ordering.toString());
+  if (search) queryParams.append('search', search.toString());
 
   const queryString = queryParams.toString();
   const endpoint = `/games${queryString ? `?${queryString}` : ""}`; 
