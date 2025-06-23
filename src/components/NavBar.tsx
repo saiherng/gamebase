@@ -3,13 +3,15 @@ import logo from '../assets/logo.png';
 
 
 import ColorModeSwitch from './ColorModeSwitch';
+import SearchInput from './SearchInput';
 
 
 const NavBar = () => {
  
   return (
-    <HStack justifyContent='space-between' padding='30px'>
+    <HStack padding='30px' direction={["column", "row"]}>
         <Image src={logo} height="60px" />
+        <SearchInput />
         <ColorModeSwitch />
     </HStack>
   )

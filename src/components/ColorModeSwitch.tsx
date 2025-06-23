@@ -16,7 +16,7 @@ const ColorModeSwitch = () => {
            <Icon as={FaMoon} color="gray.400" />
           </Switch.Indicator>
         </Switch.Control>
-        <Switch.Label>{colorMode === 'light' ? 'Light Mode': 'Dark Mode' }</Switch.Label>
+        <Switch.Label whiteSpace="nowrap">{colorMode === 'light' ? 'Light Mode': 'Dark Mode' }</Switch.Label>
       </Switch.Root>
     </HStack>
   );
